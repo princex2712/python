@@ -1,1 +1,3 @@
 Q4. How memory is managed in Python?
+
+Python uses automatic memory management with a garbage collector to handle memory allocation and deallocation

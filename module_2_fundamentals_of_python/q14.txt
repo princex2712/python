@@ -1,0 +1,2 @@
+# What are negative indexes and why are they used?
+In python negative index are used to access element from end of the string. 
