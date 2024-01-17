@@ -1,6 +1,6 @@
 # When will the else part of try-except-else be executed?
 """
-If no exception will occur then else will be excecuted
+If no exception will occur then else will be excecuted  
 
 """
 
