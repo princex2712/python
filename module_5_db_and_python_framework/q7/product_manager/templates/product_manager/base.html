@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        {% endblock %} | Q7
+    </title>
+</head>
+<link rel="stylesheet" href="{% static 'product_manager/css/bootstrap.min.css' %}">
+<script src="{% static 'product_manager/js/bootstrap.min.js' %}"></script>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #393939;
+    }
+
+    .custom-navbar {
+        background-color: rgba(22, 22, 23, 0.8);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .card {
+        width: 195px;
+        height: 285px;
+        background: rgba(22, 22, 23, 0.8);
+        border-radius: 20px;
+        margin: 10px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: 0.2s ease-in-out;
+    }
+
+    .img-container {
+        height: 150px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-container img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .img-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .textBox {
+        opacity: 0;
+        width: 100%;
+        height: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        transition: 0.2s ease-in-out;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        box-sizing: border-box;
+        z-index: 2;
+    }
+
+    .textBox>.text {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .textBox>.price {
+        font-size: 15px;
+        padding-bottom: 20px;
+    }
+
+    .textBox>span {
+        font-size: 12px;
+        color: lightgrey;
+    }
+
+    .card:hover .textBox {
+        opacity: 1;
+    }
+
+    .card:hover .img-container img {
+        transform: scale(1.1);
+    }
+
+    .card:hover .img-container::before {
+        opacity: 1;
+    }
+
+    .card:hover {
+        transform: scale(1.04);
+    }
+</style>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'dashboard_view' %}" style="color: white;">Shopify</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'dashboard_view' %}"
+                            style="color: white;">Home</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="POST" action="{% url 'search_view' %}">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        name="search_query">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>

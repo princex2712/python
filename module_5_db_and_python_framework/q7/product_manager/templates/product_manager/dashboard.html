@@ -1,0 +1,26 @@
+{% extends 'product_manager/base.html' %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-2">
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="{{ product.product_image.url }}" alt="Product Image">
+                </div>
+                <div class="textBox">
+                    <p class="text head">{{ product.product_model }}</p>
+                    <span style="font-weight: bold;">Storage:{{product.product_ram}}</span>
+                    <p class="text price">{{product.product_price}}/-</p>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
